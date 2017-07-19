@@ -21,13 +21,19 @@ with open(csv_file_path, "r") as csv_file:
     for row in reader:
         products.append(row)
 
+print("There are " + str(len(csv_file_path)) + " products in the database.") # this should return a dynamic count of the products in the database
+
 menu = """
 
-  There are 20 products in the database.
+    command | operation | description
+    ------- | --------- | -----------------
+       1    | 'List'    | Display a list of product identifiers and names
+       2    | 'Show'    | Show information about a product
+       3    | 'Create'  | Add a new product
+       4    | 'Update'  | Edit an existing product
+       5    | 'Destroy' | Delete an existing product
 
-  Available opoerations are List, Show, Create, Update, and Destroy.
-
-  Please select an operation: """
+Please select an operation: """
 
 new_operation = input(menu)
 
@@ -44,17 +50,11 @@ elif new_operation.title() == "Destroy":
 else:
     print("OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS.")
 
-#print("There are 20 products in the database.") # + str(len(csv_file_path)) +
+
 
 #print("")
 
-#print("    command | operation | description")
-#print("    ------- | --------- | -----------------")
-#print("       1    | 'List'    | Display a list of product identifiers and names")
-#print("       2    | 'Show'    | Show information about a product")
-#print("       3    | 'Create'  | Add a new product")
-#print("       4    | 'Update'  | Edit an existing product")
-#print("       5    | 'Destroy' | Delete an existing product")
+
 
 #command = []
 
