@@ -33,28 +33,35 @@ menu = """
        4    | 'Update'  | Edit an existing product
        5    | 'Destroy' | Delete an existing product
 
-Please select an operation: """
+Please select a command: """
 
 new_operation = input(menu)
 
-if new_operation.title() == "List":
-    print("LISTING PRODUCTS")
-elif new_operation.title() == "Show":
-    print("SHOWING A PRODUCT")
-elif new_operation.title() == "Create":
-    print("CREATING A PRODUCT")
-elif new_operation.title() == "Update":
-    print("UPDATING A PRODUCT")
-elif new_operation.title() == "Destroy":
-    print("DESTROYING A PRODUCT")
+d = {}
+d["List"] = 1
+d["Show"] = 2
+d["Create"] = 3
+d["Update"] = 4
+d["Destroy"] = 5
+
+if new_operation.title() == "1":
+    print("")
+    print(" + LISTING PRODUCTS")
+elif new_operation.title() == "2":
+    print("")
+    print(" + SHOWING A PRODUCT")
+elif new_operation.title() == "3":
+    print("")
+    print(" + CREATING A PRODUCT")
+elif new_operation.title() == "4":
+    print("")
+    print(" + UPDATING A PRODUCT")
+elif new_operation.title() == "5":
+    print("")
+    print(" + DESTROYING A PRODUCT")
 else:
-    print("OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS.")
-
-
-
-#print("")
-
-
+    print("")
+    print(" + OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED COMMANDS.")
 
 #command = []
 
