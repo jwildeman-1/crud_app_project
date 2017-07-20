@@ -1,4 +1,4 @@
-#import pandas as pd
+import pandas as pd
 import getpass
 
 user_name = getpass.getuser()
@@ -10,18 +10,26 @@ print("Welcome to the products app, " + (user_name) + "!")
 print("")
 
 import csv
-import operator
-
-csv_file_path = "data\products.csv"
+import os
 
 products = []
 
+csv_file_path = r"C:\Users\Jason\Desktop\python-practice\crud\data\products.csv"
+
 with open(csv_file_path, "r") as csv_file:
-    reader = csv.DictReader(csv_file)
+    reader = list(csv.DictReader(csv_file, delimiter=','))
     for row in reader:
         products.append(row)
 
-print("There are " + str(len(csv_file_path)) + " products in the database.") # this should return a dynamic count of the products in the database
+# other_path = "C:\Users\Jason\Desktop\python-practice\crud\data\other_products.csv"
+#
+# with open(other_path), "w") as csv_file:
+#     writer = csv.DictWriter(csv_file, fieldnames=["id","name","aisle","department","price"])
+#     writer.writeheader() # uses fieldnames set above
+#     for product in products:
+#         writer.writerow(product)
+
+print("There are {0} products in the database.".format(len(products))) # .format(len(products)) " + str(len(products)) + " this should return a dynamic count of the products in the database
 
 menu = """
 
@@ -36,6 +44,7 @@ menu = """
 Please select a command: """
 
 new_operation = input(menu)
+new_operation = new_operation.title()
 
 d = {}
 d["List"] = 1
@@ -44,35 +53,84 @@ d["Create"] = 3
 d["Update"] = 4
 d["Destroy"] = 5
 
-if new_operation.title() == "1":
+def list_products():
     print("")
-    print(" + LISTING PRODUCTS")
-elif new_operation.title() == "2":
+    print("---- LISTING PRODUCTS:")
     print("")
-    print(" + SHOWING A PRODUCT")
-elif new_operation.title() == "3":
-    print("")
-    print(" + CREATING A PRODUCT")
-elif new_operation.title() == "4":
-    print("")
-    print(" + UPDATING A PRODUCT")
-elif new_operation.title() == "5":
-    print("")
-    print(" + DESTROYING A PRODUCT")
-else:
-    print("")
-    print(" + OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED COMMANDS.")
+    print(products)
 
-#command = []
+def show_product():
+    print("")
+    print("---- SHOWING A PRODUCT:")
+    print("")
+
+def create_product():
+    print("")
+    print("---- CREATING A PRODUCT:")
+    print("")
+
+def update_product():
+    print("")
+    print("---- UPDATING A PRODUCT:")
+    print("")
+
+def destroy_product():
+    print("")
+    print("---- DESTROYING A PRODUCT:")
+    print("")
+
+if new_operation == "1": list_products()
+elif new_operation == "2": show_product()
+elif new_operation == "3": create_product()
+elif new_operation == "4": update_product()
+elif new_operation == "5": destroy_product()
+else: print("OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS.")
+
+# if new_operation == "1": # this is where my code originally started
+#    print("")
+#    print(" + LISTING PRODUCTS")
+# elif new_operation == "2":
+#    print("")
+#    print(" + SHOWING A PRODUCT")
+# elif new_operation == "3":
+#    print("")
+#    print(" + CREATING A PRODUCT")
+# elif new_operation == "4":
+#    print("")
+#    print(" + UPDATING A PRODUCT")
+# elif new_operation == "5":
+#    print("")
+#    print(" + DESTROYING A PRODUCT")
+# else:
+#    print("")
+#    print(" + OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED COMMANDS.") # this is where my original code ended
 
 print("")
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#command = []
+
 #while True:
 #    command = input("Please select a command: ")
-#    if product_id == "Quit":
+#    if new_operation.title == "Quit":
 #        break
 #    else:
-#        command.append(int(csv_file_path))
+#        new_operation.append(int(csv_file_path))
 
 #def lookup_product_by_id(product_id):
 #    matching_products = [product for product in products if product["id"] == product_id]
