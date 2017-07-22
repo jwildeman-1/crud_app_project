@@ -57,12 +57,17 @@ def list_products():
     print("")
     print("---- LISTING PRODUCTS:")
     print("")
-    print(products)
+    for product in products:
+        print(" + Product #" + str(product["id"]) + ": " + product["name"])
 
 def show_product():
     print("")
-    print("---- SHOWING A PRODUCT:")
-    print("")
+    product_number = input("What is the Product #? ")
+    product = [n for n in products if n["id"] == product_number][0]
+    if product:
+        print("The product you identified is: ", product)
+    else:
+        print("That Product # was not found", product)
 
 def create_product():
     print("")
