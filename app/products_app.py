@@ -21,6 +21,15 @@ with open(csv_file_path, "r") as csv_file:
     for row in reader:
         products.append(row)
 
+headers = ["id", "name", "aisle", "department", "price"]
+new_header_info = [header for header in headers if header != "id"]
+
+def get_product_id(product): return int(product["id"])
+
+def new_auto_id():
+    product_ids = map(get_product_id, products)
+    return max(product_ids) + 1
+
 # other_path = "C:\Users\Jason\Desktop\python-practice\crud\data\other_products.csv"
 #
 # with open(other_path), "w") as csv_file:
@@ -64,25 +73,38 @@ def show_product():
     print("")
     product_number = input("What is the Product #? ")
     product = [n for n in products if n["id"] == product_number][0]
+    print("")
     if product:
-        print("The product you identified is: ", product)
+        print(" + The product you identified is: ", product)
     else:
-        print("That Product # was not found", product)
+        print("+ That Product # was not found", product)
 
 def create_product():
     print("")
-    print("---- CREATING A PRODUCT:")
+    print("---- Let's create a product...")
     print("")
+    product = {"id": new_auto_id()}
+    for header in new_header_info:
+        product[header] = input("Please input the {0}: ".format(header))
+    products.append(product)
+    print("Product created. Your new product is: ", product)
 
 def update_product():
     print("")
-    print("---- UPDATING A PRODUCT:")
+    product_id = input("---- Let's update a product. What product would you like to update? ")
+    product = [n for n in products if n["id"] == product_id][0]
     print("")
+    if product:
+        print("THANK YOU! Let's update the product.")
+        for header in new_header_info:
+            product[header] = input("Change '{0}' from '{1}' to: ".format(header, product[header]))
+        print("Product has been updated to: ", product)
+    else:
+        print("Product not found", product_id)
 
 def destroy_product():
     print("")
     print("---- DESTROYING A PRODUCT:")
-    print("")
 
 if new_operation == "1": list_products()
 elif new_operation == "2": show_product()
