@@ -100,11 +100,17 @@ def update_product():
             product[header] = input("Change '{0}' from '{1}' to: ".format(header, product[header]))
         print("Product has been updated to: ", product)
     else:
-        print("Product not found", product_id)
+        print("Product not found ", product_id)
 
 def destroy_product():
     print("")
-    print("---- DESTROYING A PRODUCT:")
+    product_id = input("---- Let's destroy a product. What product would you like to destroy? ")
+    product = [n for n in products if n["id"] == product_id][0]
+    print("")
+    if product:
+        print("Product being destroyed: ", product)
+    else:
+        print("Product not found ", product_id)
 
 if new_operation == "1": list_products()
 elif new_operation == "2": show_product()
