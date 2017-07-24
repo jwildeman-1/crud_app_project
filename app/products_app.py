@@ -22,6 +22,7 @@ with open(csv_file_path, "r") as csv_file:
         products.append(row)
 
 headers = ["id", "name", "aisle", "department", "price"]
+
 new_header_info = [header for header in headers if header != "id"]
 
 def load_id(product):
@@ -145,8 +146,6 @@ else:
 #
 # Write new operations
 #
-
-print(products)
 
 with open(csv_file_path, "w") as csv_file:
     writer = csv.DictWriter(csv_file, fieldnames=headers)
